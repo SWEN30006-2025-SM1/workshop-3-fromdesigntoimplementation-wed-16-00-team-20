@@ -14,7 +14,7 @@ public class SampleValidator implements SubmissionValidator{
         File[] files = submission.includedFiles();
         for(File f : files){
             String type = f.fileType();
-            if(!type.equals("pdf")){
+            if (!type.equalsIgnoreCase("pdf")) {
                 ValidationError error = new ValidationError(f);
                 error.addError("File Type", "Unsupported filetype.");
                 errors.add(error);
@@ -24,7 +24,7 @@ public class SampleValidator implements SubmissionValidator{
         if(errors.size() > 0){
            return errors.toArray(new ValidationError[0]);
         } else {
-            return null;
+            return errors.toArray(new ValidationError[0]);;
         }
     }
 }
